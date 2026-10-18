@@ -1,0 +1,10 @@
+Mod manager questions
+
+1. Why do we need a factory and builder?
+
+2. why does the xml need to be normalized?
+https://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+
+3. Understand how to work with the node stuff? NodeList, Node. Document
+
+https://www.canva.com/design/DAHYVoTqXFE/-sxVEidOPDnA-zvXqIHmAQ/edit
