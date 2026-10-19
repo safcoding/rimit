@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.xml.parsers.DocumentBuilderFactory;
-
+import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
 
-import javax.swing.text.AbstractDocument.ElementEdit;
-import javax.xml.parsers.DocumentBuilder;
 
 
 public class Main {
@@ -43,17 +41,17 @@ public class Main {
             Document doc = dBuilder.parse(modPath.toFile());
             doc.getDocumentElement().normalize();
 
-            // Get the name of the mod
-            NodeList nameList = doc.getElementsByTagName("name");
-            Node nNode = nameList.item(0);
-            System.out.println(nNode.getTextContent());
+            //NodeList modName = doc.getElementsByTagName("name");
+            //Node modNameNode = modName.item(0);
+            Node modName = doc.getElementsByTagName("name").item(0);
+            System.out.println(modName.getTextContent());
 
-            NodeList modDependencies = doc.getElementsByTagName("modDependencies");
+            NodeList modDependencyList = doc.getElementsByTagName("modDependencies");
             System.out.println("-----------DEPENDENCIES-----------");
 
-            if (modDependencies.getLength() > 0){
-                Element modContainer = (Element) modDependencies.item(0);
-                NodeList liList = modContainer.getElementsByTagName("li");
+            if (modDependencyList.getLength() > 0){
+                Element mod = (Element) modDependencyList.item(0);
+                NodeList liList = mod.getElementsByTagName("li");
 
                 for(int i=0; i < liList.getLength(); i++){
                     Element liElement = (Element) liList.item(i);
@@ -67,8 +65,6 @@ public class Main {
 
             } else {
                 System.out.println("No dependencies detected");
-                System.exit(0);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
